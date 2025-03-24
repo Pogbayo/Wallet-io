@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "Qv1UlJb/BXs=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Adebayo\\Desktop\\SpagWallet\\SpagWallet.Application\\SpagWallet.Application.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Adebayo\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}
