@@ -1,14 +1,12 @@
-﻿using SpagWallet.Application.DTOs.TransferDtoBranch;
-using SpagWallet.Domain.Entities;
-using SpagWallet.Domain.Enums.TransactionEnums;
+﻿using SpagWallet.Domain.Entities;
 
 namespace SpagWallet.Application.Interfaces
 {
-   public interface ITransactionRepository
+    public interface ITransactionRepository
     {
-        Task<IEnumerable<Transaction>> GetTransactionsAsync();
-        Task<Transaction?> GetTransactionByIdAsync(Guid transactionId);
-        Task<TransactionReceiptDto?> GenerateTransactionReceiptAsync(CreateTransactionDto transactionDto);
-        Task UpdateTransactionStatusAsync(Guid transactionId, TransactionStatus status);
+        Task<IEnumerable<Transaction>> GetAllAsync();
+        Task<Transaction?> GetByIdAsync(Guid transactionId);
+        Task<bool> AddAsync(Transaction transaction);
+        Task<bool> UpdateAsync(Transaction transaction);
     }
 }

@@ -17,3 +17,4 @@ C:\Users\Adebayo\Desktop\SpagWallet\SpagWallet.Infrastructure\obj\Debug\net8.0\r
 C:\Users\Adebayo\Desktop\SpagWallet\SpagWallet.Infrastructure\obj\Debug\net8.0\SpagWallet.Infrastructure.pdb
 C:\Users\Adebayo\Desktop\SpagWallet\SpagWallet.Infrastructure\obj\Debug\net8.0\SpagWallet.Infrastructure.genruntimeconfig.cache
 C:\Users\Adebayo\Desktop\SpagWallet\SpagWallet.Infrastructure\obj\Debug\net8.0\ref\SpagWallet.Infrastructure.dll
+C:\Users\Adebayo\Desktop\SpagWallet\SpagWallet.Infrastructure\obj\Debug\net8.0\SpagWallet.Infrastructure.sourcelink.json

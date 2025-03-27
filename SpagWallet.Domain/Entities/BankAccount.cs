@@ -1,7 +1,6 @@
 ﻿using SpagWallet.Domain.Enums.BankAccountEnums;
 using SpagWallet.Domain.Enums.CardEnums;
 
-
 namespace SpagWallet.Domain.Entities
 {
    public class BankAccount
@@ -14,14 +13,13 @@ namespace SpagWallet.Domain.Entities
 
         public string? AccountNumber { get; private set; }
         public string BankName { get; private set; } = "Spag Bank";
-        public AccountType AccountType { get; private set; } = AccountType.Savings;
+        public AccountType AccountType { get; set; } = AccountType.Savings;
 
         public Wallet? Wallet { get; set; }
         public decimal Balance { get; private set; }
         public DateTime CreatedAt { get; private set; } = DateTime.UtcNow;
 
         public virtual List<Transaction> Transactions { get;private set; } = new() ;
-
 
         private BankAccount() {}
 
@@ -60,7 +58,11 @@ namespace SpagWallet.Domain.Entities
         {
             if (Card is not null)
                 throw new InvalidOperationException("Card already exists for this bank account.");
-            Card = new Card(Guid.NewGuid(), Guid.NewGuid(), CardTypeEnum.Virtual, CardProviderEnum.Visa);
+
+            if (Wallet == null)
+                throw new InvalidOperationException("Wallet must be assigned before generating a card.");
+
+            Card = new Card(Wallet.Id, Id, CardTypeEnum.Virtual, CardProviderEnum.Visa);
         }
 
         public void Withdraw(decimal amount)
@@ -72,7 +74,7 @@ namespace SpagWallet.Domain.Entities
 
         public string GetFormattedBalance()
         {
-            return $"Current Balance: ${Balance:F2}";
+            return $"Current Balance: ${Balance}";
         }
 
         public void AddTransaction(Transaction transaction)

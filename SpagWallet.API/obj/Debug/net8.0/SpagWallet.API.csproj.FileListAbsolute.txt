@@ -180,3 +180,4 @@ C:\Users\Adebayo\Desktop\SpagWallet\SpagWallet.API\obj\Debug\net8.0\refint\SpagW
 C:\Users\Adebayo\Desktop\SpagWallet\SpagWallet.API\obj\Debug\net8.0\SpagWallet.API.pdb
 C:\Users\Adebayo\Desktop\SpagWallet\SpagWallet.API\obj\Debug\net8.0\SpagWallet.API.genruntimeconfig.cache
 C:\Users\Adebayo\Desktop\SpagWallet\SpagWallet.API\obj\Debug\net8.0\ref\SpagWallet.API.dll
+C:\Users\Adebayo\Desktop\SpagWallet\SpagWallet.Api\obj\Debug\net8.0\SpagWallet.API.sourcelink.json

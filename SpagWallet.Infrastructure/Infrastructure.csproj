@@ -17,8 +17,8 @@
   </ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\SpagWallet.Domain\SpagWallet.Domain.csproj" />
-		<ProjectReference Include="..\SpagWallet.Application\SpagWallet.Application.csproj" />
+		<ProjectReference Include="..\SpagWallet.Domain\Domain.csproj" />
+		<ProjectReference Include="..\SpagWallet.Application\Application.csproj" />
 	</ItemGroup>
 
 </Project>

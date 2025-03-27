@@ -11,6 +11,5 @@ namespace SpagWallet.Application.DTOs.BankAccountDtoBranch
         public AccountType AccountType { get; set; }
         public decimal Balance { get;  set; }
         public DateTime CreatedAt { get;  set; } = DateTime.UtcNow;
-        public virtual List<Transaction>? Transactions { get; set; } 
     }
 }

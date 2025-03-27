@@ -10,3 +10,4 @@ C:\Users\Adebayo\Desktop\SpagWallet\SpagWallet.Domain\obj\Debug\net8.0\SpagWalle
 C:\Users\Adebayo\Desktop\SpagWallet\SpagWallet.Domain\obj\Debug\net8.0\refint\SpagWallet.Domain.dll
 C:\Users\Adebayo\Desktop\SpagWallet\SpagWallet.Domain\obj\Debug\net8.0\SpagWallet.Domain.pdb
 C:\Users\Adebayo\Desktop\SpagWallet\SpagWallet.Domain\obj\Debug\net8.0\ref\SpagWallet.Domain.dll
+C:\Users\Adebayo\Desktop\SpagWallet\SpagWallet.Domain\obj\Debug\net8.0\SpagWallet.Domain.sourcelink.json

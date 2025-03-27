@@ -16,7 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SpagWallet.Infrastructure\SpagWallet.Infrastructure.csproj" />
+    <ProjectReference Include="..\SpagWallet.Infrastructure\Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

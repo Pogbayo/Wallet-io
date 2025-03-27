@@ -26,7 +26,7 @@ namespace SpagWallet.Domain.Entities
         public Wallet(Guid userId,string walletPin, decimal balance, string currency)
         {
             
-            if (userId == Guid.Empty) throw new ArgumentException("User ID is required.");
+            if (userId == Guid.Empty) throw new ArgumentException("User Id is required.");
             if (string.IsNullOrWhiteSpace(walletPin) || walletPin.Length != 4) throw new ArgumentException("Wallet PIN must be exactly 4 digits.");
 
             UserId = userId;

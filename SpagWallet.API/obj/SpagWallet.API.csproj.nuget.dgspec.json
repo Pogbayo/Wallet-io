@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Adebayo\\Desktop\\SpagWallet\\SpagWallet.API\\SpagWallet.API.csproj": {}
+    "C:\\Users\\Adebayo\\Desktop\\SpagWallet\\SpagWallet.Api\\SpagWallet.API.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Adebayo\\Desktop\\SpagWallet\\SpagWallet.API\\SpagWallet.API.csproj": {
+    "C:\\Users\\Adebayo\\Desktop\\SpagWallet\\SpagWallet.Api\\SpagWallet.API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Adebayo\\Desktop\\SpagWallet\\SpagWallet.API\\SpagWallet.API.csproj",
+        "projectUniqueName": "C:\\Users\\Adebayo\\Desktop\\SpagWallet\\SpagWallet.Api\\SpagWallet.API.csproj",
         "projectName": "SpagWallet.API",
-        "projectPath": "C:\\Users\\Adebayo\\Desktop\\SpagWallet\\SpagWallet.API\\SpagWallet.API.csproj",
+        "projectPath": "C:\\Users\\Adebayo\\Desktop\\SpagWallet\\SpagWallet.Api\\SpagWallet.API.csproj",
         "packagesPath": "C:\\Users\\Adebayo\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Adebayo\\Desktop\\SpagWallet\\SpagWallet.API\\obj\\",
+        "outputPath": "C:\\Users\\Adebayo\\Desktop\\SpagWallet\\SpagWallet.Api\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

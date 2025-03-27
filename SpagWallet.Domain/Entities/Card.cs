@@ -1,5 +1,6 @@
 ﻿
 using SpagWallet.Domain.Enums.CardEnums;
+using System;
 
 namespace SpagWallet.Domain.Entities
 {
@@ -19,6 +20,8 @@ namespace SpagWallet.Domain.Entities
         public CardTypeEnum CardType { get; private set; } = CardTypeEnum.Virtual;
         public CardProviderEnum CardProvider { get; private set; } = CardProviderEnum.Visa;
         public CardStatusEnum CardStatus { get; private set; } = CardStatusEnum.Active;
+        private static readonly Random _random = new Random();
+
 
         public bool IsActive { get; private set; } = true;
         public DateTime ExpiryDate { get; private set; } = DateTime.UtcNow.AddYears(4);
@@ -43,11 +46,13 @@ namespace SpagWallet.Domain.Entities
 
         private string GenerateCardNumber()
         {
-            Random rnd = new Random();
-            return $"{rnd.Next(1000, 9999)} {rnd.Next(1000, 9999)} {rnd.Next(1000, 9999)} {rnd.Next(1000, 9999)}";
+            return $"{_random.Next(1000, 9999)} {_random.Next(1000, 9999)} {_random.Next(1000, 9999)} {_random.Next(1000, 9999)}";      
         }
+
         public void ActivateCard()
         {
+            if (IsActive)
+                throw new InvalidOperationException("Card is already active.");
             IsActive = true;
             CardStatus = CardStatusEnum.Active;
         }
@@ -71,14 +76,16 @@ namespace SpagWallet.Domain.Entities
 
         public void DeactivateCard()
         {
+            if (!IsActive)
+                throw new InvalidOperationException("Card already exists.");
+
             IsActive = false;
             CardStatus = CardStatusEnum.Inactive;
         }
 
         private string GenerateCvv()
         {
-            Random rnd = new Random();
-            return rnd.Next(100, 999).ToString();
+            return _random.Next(100, 999).ToString();
         }
 
         public string GetMaskedCardNumber()

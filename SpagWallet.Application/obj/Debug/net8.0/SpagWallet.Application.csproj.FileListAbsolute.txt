@@ -13,3 +13,4 @@ C:\Users\Adebayo\Desktop\SpagWallet\SpagWallet.Application\obj\Debug\net8.0\Spag
 C:\Users\Adebayo\Desktop\SpagWallet\SpagWallet.Application\obj\Debug\net8.0\refint\SpagWallet.Application.dll
 C:\Users\Adebayo\Desktop\SpagWallet\SpagWallet.Application\obj\Debug\net8.0\SpagWallet.Application.pdb
 C:\Users\Adebayo\Desktop\SpagWallet\SpagWallet.Application\obj\Debug\net8.0\ref\SpagWallet.Application.dll
+C:\Users\Adebayo\Desktop\SpagWallet\SpagWallet.Application\obj\Debug\net8.0\SpagWallet.Application.sourcelink.json
