@@ -1,0 +1,16 @@
+C:\Users\Adebayo\Desktop\SpagWallet\SpagWallet.Application\bin\Debug\net8.0\SpagWallet.Application.deps.json
+C:\Users\Adebayo\Desktop\SpagWallet\SpagWallet.Application\bin\Debug\net8.0\SpagWallet.Application.dll
+C:\Users\Adebayo\Desktop\SpagWallet\SpagWallet.Application\bin\Debug\net8.0\SpagWallet.Application.pdb
+C:\Users\Adebayo\Desktop\SpagWallet\SpagWallet.Application\bin\Debug\net8.0\SpagWallet.Domain.dll
+C:\Users\Adebayo\Desktop\SpagWallet\SpagWallet.Application\bin\Debug\net8.0\SpagWallet.Domain.pdb
+C:\Users\Adebayo\Desktop\SpagWallet\SpagWallet.Application\obj\Debug\net8.0\SpagWallet.Application.csproj.AssemblyReference.cache
+C:\Users\Adebayo\Desktop\SpagWallet\SpagWallet.Application\obj\Debug\net8.0\SpagWallet.Application.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Adebayo\Desktop\SpagWallet\SpagWallet.Application\obj\Debug\net8.0\SpagWallet.Application.AssemblyInfoInputs.cache
+C:\Users\Adebayo\Desktop\SpagWallet\SpagWallet.Application\obj\Debug\net8.0\SpagWallet.Application.AssemblyInfo.cs
+C:\Users\Adebayo\Desktop\SpagWallet\SpagWallet.Application\obj\Debug\net8.0\SpagWallet.Application.csproj.CoreCompileInputs.cache
+C:\Users\Adebayo\Desktop\SpagWallet\SpagWallet.Application\obj\Debug\net8.0\SpagWall.552BBDD6.Up2Date
+C:\Users\Adebayo\Desktop\SpagWallet\SpagWallet.Application\obj\Debug\net8.0\SpagWallet.Application.dll
+C:\Users\Adebayo\Desktop\SpagWallet\SpagWallet.Application\obj\Debug\net8.0\refint\SpagWallet.Application.dll
+C:\Users\Adebayo\Desktop\SpagWallet\SpagWallet.Application\obj\Debug\net8.0\SpagWallet.Application.pdb
+C:\Users\Adebayo\Desktop\SpagWallet\SpagWallet.Application\obj\Debug\net8.0\ref\SpagWallet.Application.dll
+C:\Users\Adebayo\Desktop\SpagWallet\SpagWallet.Application\obj\Debug\net8.0\SpagWallet.Application.sourcelink.json
