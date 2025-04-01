@@ -7,10 +7,7 @@ namespace SpagWallet.Domain.Entities
         public Guid Id { get; set; } = Guid.NewGuid();
 
         public Guid? WalletId { get; private set; }
-        //public virtual Wallet? Wallet { get; init; } = null!;
-
         public Guid? BankAccountId { get; private set; }
-        //public virtual BankAccount? BankAccount { get; private set; }
 
         public decimal Amount { get; set; }
         public required string Reference { get; set; }

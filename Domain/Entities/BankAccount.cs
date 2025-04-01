@@ -1,4 +1,5 @@
-﻿using SpagWallet.Domain.Enums.BankAccountEnums;
+﻿using Domain.Entities;
+using SpagWallet.Domain.Enums.BankAccountEnums;
 using SpagWallet.Domain.Enums.CardEnums;
 
 namespace SpagWallet.Domain.Entities
@@ -32,16 +33,18 @@ namespace SpagWallet.Domain.Entities
         
                 UserId =  user.Id;
                 User = user;
+                Card = GenerateCard();
                 AccountNumber = GenerateUniqueAccountNumber();
                 BankName = bankName;
                 AccountType = AccountType.Savings;
                 Balance = initialDeposit;
         }
 
-        public void Credit(decimal amount)
+        public bool Credit(decimal amount)
         {
             if (amount <= 0) throw new ArgumentException("Deposit amount must be greater than zero");
             Balance += amount;
+            return true;
         }
 
         private string GenerateUniqueAccountNumber()
@@ -54,7 +57,7 @@ namespace SpagWallet.Domain.Entities
             return accountNumber.ToString();
         }
 
-        public void GenerateCard()
+        public Card GenerateCard()
         {
             if (Card is not null)
                 throw new InvalidOperationException("Card already exists for this bank account.");
@@ -63,13 +66,15 @@ namespace SpagWallet.Domain.Entities
                 throw new InvalidOperationException("Wallet must be assigned before generating a card.");
 
             Card = new Card(Wallet.Id, Id, CardTypeEnum.Virtual, CardProviderEnum.Visa);
+            return Card;
         }
 
-        public void Withdraw(decimal amount)
+        public bool Withdraw(decimal amount)
         {
             if (amount <= 0) throw new ArgumentException("withdrawal amount must be gretaer than Zero");
             if (amount > Balance) throw new ArgumentException("Insufficient funds");
             Balance -= amount;
+            return true;
         }
 
         public string GetFormattedBalance()

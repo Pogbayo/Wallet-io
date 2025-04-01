@@ -29,10 +29,11 @@ namespace SpagWallet.Infrastructure.Persistence.Repositories
             return await _transactionTable.FindAsync(transactionId);
         }
 
-        public async Task<bool> AddAsync(Transaction transaction)
+        public async Task<Transaction> AddAsync(Transaction transaction)
         {
             await _transactionTable.AddAsync(transaction);
-            return await _context.SaveChangesAsync() > 0;
+            await _context.SaveChangesAsync();
+            return transaction;
         }
 
         public async Task<bool> UpdateAsync(Transaction transaction)

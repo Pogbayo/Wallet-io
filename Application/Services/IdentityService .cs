@@ -16,22 +16,27 @@ using Microsoft.Extensions.Options;
 
 namespace SpagWallet.Application.Services
 {
-    public class UserService : IUserService
+    public class IdentityService : IUserService
     {
         private readonly IUserRepository _userRepository;
         private readonly IAuditLogRepository _auditLogRepository;
         private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly JwtSettings _jwtSettings;
-        public UserService(
+        private readonly ICurrentUserService _currentUserService;
+        public Guid currentuserId { get; }
+        public IdentityService(
             IUserRepository userRepository,
             IAuditLogRepository auditLogRepository,
             IHttpContextAccessor httpContextAccessor,
-            IOptions<JwtSettings> jwtOptions)
+            IOptions<JwtSettings> jwtOptions,
+            ICurrentUserService currentUserService)
         {
             _userRepository = userRepository;
             _auditLogRepository = auditLogRepository;
             _httpContextAccessor = httpContextAccessor;
             _jwtSettings = jwtOptions.Value;
+            _currentUserService = currentUserService;
+            currentuserId = currentUserService.GetUserId();
         }
 
         public async Task<bool> DeleteUserAsync(Guid userId)
@@ -45,7 +50,7 @@ namespace SpagWallet.Application.Services
             {
                 var auditLog = new AuditLog(
                     action: "Deleted User",
-                    performedBy: userId,
+                    performedBy: currentuserId,
                     details: $"User with ID {userId} was deleted."
                 );
 
@@ -55,16 +60,8 @@ namespace SpagWallet.Application.Services
             return isDeleted;
         }
 
-        private Guid GetCurrentUserId()
-        {
-            var userIdClaim = _httpContextAccessor.HttpContext?.User?.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-            return Guid.TryParse(userIdClaim, out var userId) ? userId : Guid.Empty;
-        }
-
         public async Task<IEnumerable<UserDto>> GetAllUsersAsync()
         {
-            var performedBy = GetCurrentUserId();
-
             var users = await _userRepository.GetAllUsersAsync();
             if (!users.Any())
                 return new List<UserDto>();
@@ -80,7 +77,7 @@ namespace SpagWallet.Application.Services
 
             var auditLog = new AuditLog(
                 action: "Retrieved Users",
-                performedBy:performedBy , 
+                performedBy: currentuserId, 
                 details: "User list was retrieved."
               );
 
@@ -108,6 +105,14 @@ namespace SpagWallet.Application.Services
                CreatedAt = user.CreatedAt
                };
 
+            var auditLog = new AuditLog(
+              action: "Retrieved User",
+              performedBy: currentuserId,
+              details: $"User fetched by {currentuserId}."
+            );
+
+            await _auditLogRepository.AddLogAsync(auditLog);
+
             return userDto;
         }
 
@@ -130,6 +135,14 @@ namespace SpagWallet.Application.Services
                 CreatedAt = user.CreatedAt
             };
 
+            var auditLog = new AuditLog(
+                  action: "Retrieved User",
+                  performedBy: currentuserId,
+                  details: $"User fetched by {currentuserId}."
+             );
+
+            await _auditLogRepository.AddLogAsync(auditLog);
+
             return userDto;
         }
 
@@ -144,6 +157,7 @@ namespace SpagWallet.Application.Services
 
         public async Task<string?> LoginUserAsync(LoginDto loginData)
         {
+
             if (string.IsNullOrEmpty(loginData.Email) && string.IsNullOrEmpty(loginData.Password))
                 throw new ArgumentException("Invalid Email orpassword");
 
@@ -167,12 +181,20 @@ namespace SpagWallet.Application.Services
             };
 
             var token = tokenHandler.CreateToken(tokenDescriptor);
+            var auditLog = new AuditLog(
+                  action: "Sign in",
+                  performedBy: currentuserId,
+                  details: $"{user.Id} logged in"
+             );
+
+            await _auditLogRepository.AddLogAsync(auditLog);
+
             return tokenHandler.WriteToken(token);
         }
 
 
         public async Task<UserDto?> RegisterUserAsync(CreateUserDto userdata)
-        { 
+        {
             if (userdata == null)
                throw new ArgumentException("User data not complete");
 
@@ -180,23 +202,30 @@ namespace SpagWallet.Application.Services
             if (existingUser != null)
                 throw new InvalidOperationException("User with this email already exists");
 
-            var newUser = new User
+            var userEntity = new User
             {
                 Id = Guid.NewGuid(),
                 FirstName = userdata.FirstName,
                 LastName = userdata.LastName,
-                Email = userdata.Email,
-                PasswordHash = userdata.PasswordHash,
-                Role = UserRoleEnum.User,
-                DateOfBirth = userdata.DateOfBirth,
                 TransferPin = userdata.TransferPin,
+                PasswordHash = userdata.PasswordHash,
+                Email = userdata.Email,
+                Role = UserRoleEnum.User,
                 CreatedAt = DateTime.UtcNow
             };
 
-            var createdUser = await _userRepository.AddUserAsync(newUser);
+            var createdUser = await _userRepository.AddUserAsync(userEntity);
 
             if (createdUser == null)
                 return null;
+
+            var auditLog = new AuditLog(
+                  action: "User registration",
+                  performedBy: currentuserId,
+                  details: $"{userEntity.Id} just registered."
+             );
+
+            await _auditLogRepository.AddLogAsync(auditLog);
 
             return new UserDto
             {
@@ -213,7 +242,8 @@ namespace SpagWallet.Application.Services
             var existingUser = await _userRepository.GetUserByIdAsync(userId);
             if (existingUser == null) return null;
 
-            // Update only non-null values
+            string oldRole = existingUser.Role.ToString();
+
             if (!string.IsNullOrWhiteSpace(updateUserDto.FirstName))
                 existingUser.FirstName = updateUserDto.FirstName;
 
@@ -226,8 +256,22 @@ namespace SpagWallet.Application.Services
             if (updateUserDto.DateOfBirth.HasValue)
                 existingUser.DateOfBirth = updateUserDto.DateOfBirth.Value;
 
-            var updatedUser = await _userRepository.UpdateUserAsync(userId,existingUser);
+            if (updateUserDto.Role != existingUser.Role)
+            {
+                oldRole = existingUser.Role.ToString();
+                existingUser.Role = updateUserDto.Role;
+            }
+
+            var updatedUser = await _userRepository.UpdateUserAsync(userId, existingUser);
             if (updatedUser == null) return null;
+
+            var auditLog = new AuditLog(
+                action: "User update",
+                performedBy: currentuserId,
+                details: $"User with ID {userId} updated by {currentuserId}. Role changed from {oldRole} to {updatedUser.Role}."
+            );
+
+            await _auditLogRepository.AddLogAsync(auditLog);
 
             return new UserDto
             {
@@ -240,4 +284,6 @@ namespace SpagWallet.Application.Services
         }
 
     }
+
 }
+

@@ -1,5 +1,6 @@
 ﻿using Application.Interfaces.RepoInterfaces;
 using Microsoft.EntityFrameworkCore;
+using SpagWallet.Application.DTOs.WalletDtoBranch;
 using SpagWallet.Domain.Entities;
 using SpagWallet.Infrastructure.Persistence.Data;
 
@@ -59,6 +60,49 @@ namespace SpagWallet.Infrastructure.Persistence.Repositories
         {
             await _walletTable.AddAsync(wallet);
             return await _context.SaveChangesAsync() > 0;
+        }
+        public async Task SaveAsync()
+        {
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task<bool> AddFundsAsync(Guid walletId, decimal amount)
+        {
+            var wallet = await GetByIdAsync(walletId);
+            if (wallet == null) return false;
+
+            wallet.Credit(amount);
+            return await _context.SaveChangesAsync() > 0;
+        }
+
+
+        public async Task<bool> WithdrawFundsAsync(Guid walletId, decimal amount)
+        {
+            var wallet = await GetByIdAsync(walletId);
+            if (wallet == null || wallet.Balance < amount) return false;
+
+            wallet.Withdraw(amount);
+            return await _context.SaveChangesAsync() > 0;
+        }
+
+        public async Task<bool> TransferFundsAsync(Guid senderWalletId, Guid receiverWalletId, decimal amount)
+        {
+            var senderWallet = await GetByIdAsync(senderWalletId);
+            var receiverWallet = await GetByIdAsync(receiverWalletId);
+
+            if (senderWallet == null || receiverWallet == null || senderWallet.Balance < amount)
+                return false;
+
+            senderWallet.Withdraw(amount);
+            receiverWallet.Credit(amount);
+
+            return await _context.SaveChangesAsync() > 0;
+        }
+
+        public async Task<List<Wallet>> GetAllWalletsAsync()
+        {
+            var walletList = await _walletTable.ToListAsync();
+            return walletList;
         }
     }
 }

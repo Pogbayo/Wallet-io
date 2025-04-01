@@ -3,24 +3,52 @@
   "WorkspaceRootPath": "C:\\Users\\Adebayo\\Desktop\\SpagWallet\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{91CF151C-F3C7-4326-A00C-FDCA2CF9A896}|API\\API.csproj|c:\\users\\adebayo\\desktop\\spagwallet\\api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{91CF151C-F3C7-4326-A00C-FDCA2CF9A896}|API\\API.csproj|solutionrelative:api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{AAF966C2-F5B6-412C-AB2D-6EB375346ACE}|Application\\Application.csproj|c:\\users\\adebayo\\desktop\\spagwallet\\application\\wrappers\\basecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AAF966C2-F5B6-412C-AB2D-6EB375346ACE}|Application\\Application.csproj|solutionrelative:application\\wrappers\\basecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Adebayo\\Desktop\\SpagWallet\\SpagWallet.Infrastructure\\Infrastructure.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:SpagWallet.Infrastructure\\Infrastructure.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+      "AbsoluteMoniker": "D:0:0:{AAF966C2-F5B6-412C-AB2D-6EB375346ACE}|Application\\Application.csproj|c:\\users\\adebayo\\desktop\\spagwallet\\application\\services\\accountservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AAF966C2-F5B6-412C-AB2D-6EB375346ACE}|Application\\Application.csproj|solutionrelative:application\\services\\accountservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Adebayo\\Desktop\\SpagWallet\\SpagWallet.Application\\Services\\UserService.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:SpagWallet.Application\\Services\\UserService.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{AAF966C2-F5B6-412C-AB2D-6EB375346ACE}|Application\\Application.csproj|c:\\users\\adebayo\\desktop\\spagwallet\\application\\wrappers\\apiresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AAF966C2-F5B6-412C-AB2D-6EB375346ACE}|Application\\Application.csproj|solutionrelative:application\\wrappers\\apiresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Adebayo\\Desktop\\SpagWallet\\SpagWallet.Domain\\Domain.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:SpagWallet.Domain\\Domain.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+      "AbsoluteMoniker": "D:0:0:{AAF966C2-F5B6-412C-AB2D-6EB375346ACE}|Application\\Application.csproj|c:\\users\\adebayo\\desktop\\spagwallet\\application\\dtos\\authresponse\\authresponsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AAF966C2-F5B6-412C-AB2D-6EB375346ACE}|Application\\Application.csproj|solutionrelative:application\\dtos\\authresponse\\authresponsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Adebayo\\Desktop\\SpagWallet\\SpagWallet.API\\Program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:SpagWallet.API\\Program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{9FF31160-8C10-450E-A496-FDAD0D21ADE0}|Infrastructure\\Infrastructure.csproj|c:\\users\\adebayo\\desktop\\spagwallet\\infrastructure\\persistence\\repositories\\bankaccountrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9FF31160-8C10-450E-A496-FDAD0D21ADE0}|Infrastructure\\Infrastructure.csproj|solutionrelative:infrastructure\\persistence\\repositories\\bankaccountrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AAF966C2-F5B6-412C-AB2D-6EB375346ACE}|Application\\Application.csproj|c:\\users\\adebayo\\desktop\\spagwallet\\application\\interfaces\\repointerfaces\\ibankaccountrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AAF966C2-F5B6-412C-AB2D-6EB375346ACE}|Application\\Application.csproj|solutionrelative:application\\interfaces\\repointerfaces\\ibankaccountrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4596A2DB-25D3-4201-BDF5-EA18464CDB2F}|Domain\\Domain.csproj|c:\\users\\adebayo\\desktop\\spagwallet\\domain\\entities\\bankaccount.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4596A2DB-25D3-4201-BDF5-EA18464CDB2F}|Domain\\Domain.csproj|solutionrelative:domain\\entities\\bankaccount.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AAF966C2-F5B6-412C-AB2D-6EB375346ACE}|Application\\Application.csproj|c:\\users\\adebayo\\desktop\\spagwallet\\application\\interfaces\\serviceinterfaces\\ikycservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AAF966C2-F5B6-412C-AB2D-6EB375346ACE}|Application\\Application.csproj|solutionrelative:application\\interfaces\\serviceinterfaces\\ikycservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9FF31160-8C10-450E-A496-FDAD0D21ADE0}|Infrastructure\\Infrastructure.csproj|c:\\users\\adebayo\\desktop\\spagwallet\\infrastructure\\persistence\\repositories\\auditlogrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9FF31160-8C10-450E-A496-FDAD0D21ADE0}|Infrastructure\\Infrastructure.csproj|solutionrelative:infrastructure\\persistence\\repositories\\auditlogrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AAF966C2-F5B6-412C-AB2D-6EB375346ACE}|Application\\Application.csproj|c:\\users\\adebayo\\desktop\\spagwallet\\application\\services\\walletmanager .cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AAF966C2-F5B6-412C-AB2D-6EB375346ACE}|Application\\Application.csproj|solutionrelative:application\\services\\walletmanager .cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AAF966C2-F5B6-412C-AB2D-6EB375346ACE}|Application\\Application.csproj|c:\\users\\adebayo\\desktop\\spagwallet\\application\\services\\fundflowhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AAF966C2-F5B6-412C-AB2D-6EB375346ACE}|Application\\Application.csproj|solutionrelative:application\\services\\fundflowhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AAF966C2-F5B6-412C-AB2D-6EB375346ACE}|Application\\Application.csproj|c:\\users\\adebayo\\desktop\\spagwallet\\application\\services\\identityauthservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AAF966C2-F5B6-412C-AB2D-6EB375346ACE}|Application\\Application.csproj|solutionrelative:application\\services\\identityauthservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -29,7 +57,7 @@
       "VerticalTabListWidth": 256,
       "DocumentGroups": [
         {
-          "DockedWidth": 200,
+          "DockedWidth": 99,
           "SelectedChildIndex": 1,
           "Children": [
             {
@@ -38,63 +66,155 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\Adebayo\\Desktop\\SpagWallet\\API\\Program.cs",
-              "RelativeDocumentMoniker": "API\\Program.cs",
-              "ToolTip": "C:\\Users\\Adebayo\\Desktop\\SpagWallet\\API\\Program.cs",
-              "RelativeToolTip": "API\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAAKAAAAAAAAAA==",
+              "DocumentIndex": 1,
+              "Title": "AccountService.cs",
+              "DocumentMoniker": "C:\\Users\\Adebayo\\Desktop\\SpagWallet\\Application\\Services\\AccountService.cs",
+              "RelativeDocumentMoniker": "Application\\Services\\AccountService.cs",
+              "ToolTip": "C:\\Users\\Adebayo\\Desktop\\SpagWallet\\Application\\Services\\AccountService.cs",
+              "RelativeToolTip": "Application\\Services\\AccountService.cs",
+              "ViewState": "AgIAAAIAAAAAAAAAAAAgwBIAAAA5AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-27T19:17:18.311Z",
+              "WhenOpened": "2025-03-30T07:50:16.474Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Infrastructure.csproj",
-              "DocumentMoniker": "C:\\Users\\Adebayo\\Desktop\\SpagWallet\\SpagWallet.Infrastructure\\Infrastructure.csproj",
-              "RelativeDocumentMoniker": "SpagWallet.Infrastructure\\Infrastructure.csproj",
-              "ToolTip": "C:\\Users\\Adebayo\\Desktop\\SpagWallet\\SpagWallet.Infrastructure\\Infrastructure.csproj",
-              "RelativeToolTip": "SpagWallet.Infrastructure\\Infrastructure.csproj",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-03-27T19:08:45.247Z"
+              "DocumentIndex": 9,
+              "Title": "WalletManager .cs",
+              "DocumentMoniker": "C:\\Users\\Adebayo\\Desktop\\SpagWallet\\Application\\Services\\WalletManager .cs",
+              "RelativeDocumentMoniker": "Application\\Services\\WalletManager .cs",
+              "ToolTip": "C:\\Users\\Adebayo\\Desktop\\SpagWallet\\Application\\Services\\WalletManager .cs",
+              "RelativeToolTip": "Application\\Services\\WalletManager .cs",
+              "ViewState": "AgIAAHgAAAAAAAAAAAAmwCAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-30T07:44:21.67Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\Adebayo\\Desktop\\SpagWallet\\SpagWallet.API\\Program.cs",
-              "RelativeDocumentMoniker": "SpagWallet.API\\Program.cs",
-              "ToolTip": "C:\\Users\\Adebayo\\Desktop\\SpagWallet\\SpagWallet.API\\Program.cs",
-              "RelativeToolTip": "SpagWallet.API\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 8,
+              "Title": "AuditLogRepository.cs",
+              "DocumentMoniker": "C:\\Users\\Adebayo\\Desktop\\SpagWallet\\Infrastructure\\Persistence\\Repositories\\AuditLogRepository.cs",
+              "RelativeDocumentMoniker": "Infrastructure\\Persistence\\Repositories\\AuditLogRepository.cs",
+              "ToolTip": "C:\\Users\\Adebayo\\Desktop\\SpagWallet\\Infrastructure\\Persistence\\Repositories\\AuditLogRepository.cs",
+              "RelativeToolTip": "Infrastructure\\Persistence\\Repositories\\AuditLogRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-27T19:05:40.325Z"
+              "WhenOpened": "2025-03-30T07:43:31.158Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "FundFlowHandler.cs",
+              "DocumentMoniker": "C:\\Users\\Adebayo\\Desktop\\SpagWallet\\Application\\Services\\FundFlowHandler.cs",
+              "RelativeDocumentMoniker": "Application\\Services\\FundFlowHandler.cs",
+              "ToolTip": "C:\\Users\\Adebayo\\Desktop\\SpagWallet\\Application\\Services\\FundFlowHandler.cs",
+              "RelativeToolTip": "Application\\Services\\FundFlowHandler.cs",
+              "ViewState": "AgIAAGQAAAAAAAAAAAAcwHsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-29T19:18:14.835Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "IdentityAuthService.cs",
+              "DocumentMoniker": "C:\\Users\\Adebayo\\Desktop\\SpagWallet\\Application\\Services\\IdentityAuthService.cs",
+              "RelativeDocumentMoniker": "Application\\Services\\IdentityAuthService.cs",
+              "ToolTip": "C:\\Users\\Adebayo\\Desktop\\SpagWallet\\Application\\Services\\IdentityAuthService.cs",
+              "RelativeToolTip": "Application\\Services\\IdentityAuthService.cs",
+              "ViewState": "AgIAAJYAAAAAAAAAAAAQwKwAAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-29T16:40:48.068Z"
+            }
+          ]
+        },
+        {
+          "DockedWidth": 175,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "BaseController.cs",
+              "DocumentMoniker": "C:\\Users\\Adebayo\\Desktop\\SpagWallet\\Application\\Wrappers\\BaseController.cs",
+              "RelativeDocumentMoniker": "Application\\Wrappers\\BaseController.cs",
+              "ToolTip": "C:\\Users\\Adebayo\\Desktop\\SpagWallet\\Application\\Wrappers\\BaseController.cs",
+              "RelativeToolTip": "Application\\Wrappers\\BaseController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-30T09:51:29.881Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "UserService.cs",
-              "DocumentMoniker": "C:\\Users\\Adebayo\\Desktop\\SpagWallet\\SpagWallet.Application\\Services\\UserService.cs",
-              "RelativeDocumentMoniker": "SpagWallet.Application\\Services\\UserService.cs",
-              "ToolTip": "C:\\Users\\Adebayo\\Desktop\\SpagWallet\\SpagWallet.Application\\Services\\UserService.cs",
-              "RelativeToolTip": "SpagWallet.Application\\Services\\UserService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Title": "ApiResponse.cs",
+              "DocumentMoniker": "C:\\Users\\Adebayo\\Desktop\\SpagWallet\\Application\\Wrappers\\ApiResponse.cs",
+              "RelativeDocumentMoniker": "Application\\Wrappers\\ApiResponse.cs",
+              "ToolTip": "C:\\Users\\Adebayo\\Desktop\\SpagWallet\\Application\\Wrappers\\ApiResponse.cs",
+              "RelativeToolTip": "Application\\Wrappers\\ApiResponse.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAKAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-27T19:05:33.212Z"
+              "WhenOpened": "2025-03-30T09:39:33.523Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "Domain.csproj",
-              "DocumentMoniker": "C:\\Users\\Adebayo\\Desktop\\SpagWallet\\SpagWallet.Domain\\Domain.csproj",
-              "RelativeDocumentMoniker": "SpagWallet.Domain\\Domain.csproj",
-              "ToolTip": "C:\\Users\\Adebayo\\Desktop\\SpagWallet\\SpagWallet.Domain\\Domain.csproj",
-              "RelativeToolTip": "SpagWallet.Domain\\Domain.csproj",
+              "Title": "AuthResponseDto.cs",
+              "DocumentMoniker": "C:\\Users\\Adebayo\\Desktop\\SpagWallet\\Application\\DTOs\\AuthResponse\\AuthResponseDto.cs",
+              "RelativeDocumentMoniker": "Application\\DTOs\\AuthResponse\\AuthResponseDto.cs",
+              "ToolTip": "C:\\Users\\Adebayo\\Desktop\\SpagWallet\\Application\\DTOs\\AuthResponse\\AuthResponseDto.cs",
+              "RelativeToolTip": "Application\\DTOs\\AuthResponse\\AuthResponseDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-03-27T18:40:35.388Z"
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-30T09:38:04.036Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "IBankAccountRepository.cs",
+              "DocumentMoniker": "C:\\Users\\Adebayo\\Desktop\\SpagWallet\\Application\\Interfaces\\RepoInterfaces\\IBankAccountRepository.cs",
+              "RelativeDocumentMoniker": "Application\\Interfaces\\RepoInterfaces\\IBankAccountRepository.cs",
+              "ToolTip": "C:\\Users\\Adebayo\\Desktop\\SpagWallet\\Application\\Interfaces\\RepoInterfaces\\IBankAccountRepository.cs",
+              "RelativeToolTip": "Application\\Interfaces\\RepoInterfaces\\IBankAccountRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-30T09:07:15.455Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "BankAccountRepository.cs",
+              "DocumentMoniker": "C:\\Users\\Adebayo\\Desktop\\SpagWallet\\Infrastructure\\Persistence\\Repositories\\BankAccountRepository.cs",
+              "RelativeDocumentMoniker": "Infrastructure\\Persistence\\Repositories\\BankAccountRepository.cs",
+              "ToolTip": "C:\\Users\\Adebayo\\Desktop\\SpagWallet\\Infrastructure\\Persistence\\Repositories\\BankAccountRepository.cs",
+              "RelativeToolTip": "Infrastructure\\Persistence\\Repositories\\BankAccountRepository.cs",
+              "ViewState": "AgIAAEsAAAAAAAAAAAA4wFUAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-30T09:04:55.773Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "BankAccount.cs",
+              "DocumentMoniker": "C:\\Users\\Adebayo\\Desktop\\SpagWallet\\Domain\\Entities\\BankAccount.cs",
+              "RelativeDocumentMoniker": "Domain\\Entities\\BankAccount.cs",
+              "ToolTip": "C:\\Users\\Adebayo\\Desktop\\SpagWallet\\Domain\\Entities\\BankAccount.cs",
+              "RelativeToolTip": "Domain\\Entities\\BankAccount.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-30T07:54:55.03Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "IKycService.cs",
+              "DocumentMoniker": "C:\\Users\\Adebayo\\Desktop\\SpagWallet\\Application\\Interfaces\\ServiceInterfaces\\IKycService.cs",
+              "RelativeDocumentMoniker": "Application\\Interfaces\\ServiceInterfaces\\IKycService.cs",
+              "ToolTip": "C:\\Users\\Adebayo\\Desktop\\SpagWallet\\Application\\Interfaces\\ServiceInterfaces\\IKycService.cs",
+              "RelativeToolTip": "Application\\Interfaces\\ServiceInterfaces\\IKycService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-29T17:04:06.191Z"
             }
           ]
         }

@@ -7,3 +7,4 @@ namespace SpagWallet.Domain.Enums.TransactionEnums
        BankAccount
     }
 }
+                                                                                                                       

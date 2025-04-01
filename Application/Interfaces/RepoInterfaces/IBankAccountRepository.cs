@@ -6,11 +6,17 @@ namespace Application.Interfaces.RepoInterfaces
    public interface IBankAccountRepository
     {
         Task<List<Guid>> GetAllAsync();
-        Task<BankAccountDto> CreateAsync(BankAccount CreateBankAccountDto);
-        Task<BankAccountDto?> GetByIdAsync(Guid bankAccountId);
-        Task<BankAccountDto?> GetByUserIdAsync(Guid userId);
-        Task<BankAccountDto?> GetByWalletIdAsync(Guid walletId);
+        Task<BankAccount> CreateAsync(BankAccount CreateBankAccountDto);
+        Task<BankAccount> GetByIdAsync(Guid bankAccountId);
+        Task<BankAccount> GetByUserIdAsync(Guid userId);
+        Task<BankAccount> GetByWalletIdAsync(Guid walletId);
         Task<bool> UpdateBalanceAsync(Guid bankAccountId, decimal amount);
-        Task<BankAccountDto> UpdateAccountType(Guid bankaccountId, UpdateBankAccountDto updateDto);
+        Task<BankAccount> UpdateAccountTypeAsync(Guid bankaccountId, UpdateBankAccountDto updateDto);
+        Task<bool> DeleteAsync(Guid bankaccoutid);
+        Task<bool> SaveAsync();
+        Task<bool> AddFundsAsync(Guid bankaccountId, decimal amount);
+        Task<bool> WithdrawFundsAsync(Guid bankaccountId, decimal amount);
+        Task<bool> TransferFundsAsync(Guid senderbankaccountid, Guid receiverbankaccountIid, decimal amount);
     }
 }
+

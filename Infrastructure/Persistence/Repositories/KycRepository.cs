@@ -48,25 +48,22 @@ namespace SpagWallet.Infrastructure.Persistence.Repositories
             await _context.SaveChangesAsync();
         }
 
-        public async Task DeleteKycAsync(Guid kycId)
+        public async Task<bool> DeleteKycAsync(Guid kycId)
         {
+            bool result;
             var kyc = await _kycTable.FindAsync(kycId);
             if (kyc != null)
             {
                 _kycTable.Remove(kyc);
-                await _context.SaveChangesAsync();
+                result = await _context.SaveChangesAsync() > 0;
             }
+            return true;
         }
 
         public async Task<bool> VerifyKycAsync(Guid userId, bool isVerified)
         {
             var kyc = await _kycTable.FirstOrDefaultAsync(k => k.UserId == userId);
-            if (kyc == null) return false;
-
-            kyc.IsVerified = isVerified;
-            kyc.VerifiedAt = isVerified ? DateTime.UtcNow : kyc.VerifiedAt;
             await _context.SaveChangesAsync();
-
             return true;
         }
 

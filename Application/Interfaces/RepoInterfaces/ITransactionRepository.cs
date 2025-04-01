@@ -6,7 +6,7 @@ namespace Application.Interfaces.RepoInterfaces
     {
         Task<IEnumerable<Transaction>> GetAllAsync();
         Task<Transaction?> GetByIdAsync(Guid transactionId);
-        Task<bool> AddAsync(Transaction transaction);
+        Task<Transaction> AddAsync(Transaction transaction);
         Task<bool> UpdateAsync(Transaction transaction);
     }
 }

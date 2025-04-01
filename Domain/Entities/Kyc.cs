@@ -8,8 +8,7 @@ namespace SpagWallet.Domain.Entities
         public Guid UserId { get; set; }
         public required virtual User User { get; init; }
         public string FullName { get; set; } = string.Empty;
-        public string? IdentificationType { get; set; }
-        public string IdentificationNumber { get; set; } = string.Empty;
+        public Guid IdentificationNumber { get; set; } = Guid.NewGuid();
         public bool IsVerified { get; set; } = false;
         public DateTime VerifiedAt { get; set; }
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
@@ -23,8 +22,6 @@ namespace SpagWallet.Domain.Entities
 
             UserId = userId;
             FullName = fullName;
-            IdentificationType = idType;
-            IdentificationNumber = idNumber;
             CreatedAt = DateTime.UtcNow;
         }
 
@@ -33,18 +30,16 @@ namespace SpagWallet.Domain.Entities
             IsVerified = true;
         }
 
-        public void UpdateIdentification(string newIdType, string newIdNumber)
+        public void UpdateIdentification( Guid newIdNumber)
         {
-            if (string.IsNullOrWhiteSpace(newIdType)) throw new ArgumentException("Identification type is required.");
-            if (string.IsNullOrWhiteSpace(newIdNumber)) throw new ArgumentException("Identification number is required.");
+            if (newIdNumber == Guid.Empty) throw new ArgumentException("Identification number is required.");
 
-            IdentificationType = newIdType;
             IdentificationNumber = newIdNumber;
         }
 
         public string GetKycSummary()
         {
-            return $"KYC for {FullName}, Status: {(IsVerified ? "Verified" : "Pending")}, ID Type: {IdentificationType ?? "N/A"}";
+            return $"KYC for {FullName}, Status: {(IsVerified ? "Verified" : "Pending")}";
         }
 
         public bool IsKycVerified()

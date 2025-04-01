@@ -1,7 +1,5 @@
 ﻿using Application.DTOs.UserDtoBranch;
 using SpagWallet.Application.DTOs.UserDtoBranch;
-using SpagWallet.Domain.Entities;
-using SpagWallet.Domain.Enums.UserEnums;
 
 namespace Application.Interfaces.ServiceInterfaces
 {
@@ -13,5 +11,6 @@ namespace Application.Interfaces.ServiceInterfaces
         Task<UserDto?> GetUserByEmailAsync(string email);
         Task<IEnumerable<UserDto>> GetAllUsersAsync();
         Task<UserDto?> UpdateUserAsync(Guid userId, UpdateUserDto updateUserDto);
+        Task<bool> DeleteUserAsync(Guid userId);
     }
 }

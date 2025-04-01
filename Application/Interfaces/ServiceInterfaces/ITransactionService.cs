@@ -1,11 +1,13 @@
-﻿using SpagWallet.Domain.Entities;
+﻿using SpagWallet.Application.DTOs.TransferDtoBranch;
+using SpagWallet.Domain.Entities;
 
 namespace Application.Interfaces.ServiceInterfaces
 {
     public interface ITransactionService
     {
-        Task<IEnumerable<Transaction>> GetAllTransactionsAsync();
-        Task<Transaction?> GetTransactionByIdAsync(Guid transactionId);
-        Task<bool> ProcessTransactionAsync(Transaction transaction);
+        Task<IEnumerable<GetTransactionDetailsDto>> GetAllTransactionsAsync();
+        Task<GetTransactionDetailsDto?> GetTransactionByIdAsync(Guid transactionId);
+        Task<TransactionReceiptDto?> ProcessReceiptAsync(Transaction transaction);
+        Task<TransactionReceiptDto> AddAsync(Transaction transaction);
     }
 }

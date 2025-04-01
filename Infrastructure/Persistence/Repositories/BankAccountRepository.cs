@@ -18,26 +18,17 @@ namespace SpagWallet.Infrastructure.Persistence.Repositories
             _bankAccountTable = context.BankAccounts;
         }
 
-        public async Task<BankAccountDto> CreateAsync(BankAccount CreateBankAccountDto)
+        public async Task<BankAccount> CreateAsync(BankAccount bankAccountdata)
         {
-            if (CreateBankAccountDto == null)
-                throw new ArgumentException("Bank details incomplete.");
-
             var existingBankAccount = await _bankAccountTable
-                .FirstOrDefaultAsync(b => b.AccountNumber == CreateBankAccountDto.AccountNumber);
+                .FirstOrDefaultAsync(b => b.AccountNumber == bankAccountdata.AccountNumber);
 
             if (existingBankAccount != null)
                 throw new ArgumentException("Bank account already exists.");
 
-            return new BankAccountDto
-            {
-                Id = CreateBankAccountDto.Id,
-                AccountNumber = CreateBankAccountDto.AccountNumber,
-                BankName = CreateBankAccountDto.BankName,
-                AccountType = CreateBankAccountDto.AccountType,
-                Balance = 0m,
-                CreatedAt = DateTime.UtcNow,
-            };
+            await _bankAccountTable.AddAsync(bankAccountdata);
+
+            return bankAccountdata;
 
         }
 
@@ -57,33 +48,22 @@ namespace SpagWallet.Infrastructure.Persistence.Repositories
         {
             var accountRecords = await _bankAccountTable
                 .ToListAsync();
-
-            if (accountRecords.Count == 0)
-                throw new ArgumentException("Account list empty");
-
             return accountRecords.Select( account => account.Id).ToList();
         }
 
-        public async Task<BankAccountDto?> GetByIdAsync(Guid bankAccountId)
+        public async Task<BankAccount> GetByIdAsync(Guid bankAccountId)
         {
             var accountRecord = await _bankAccountTable
                 .FindAsync(bankAccountId);
-
-            if (accountRecord is null)
-                return null;
-
-            return new BankAccountDto
+            if (accountRecord ==  null)
             {
-                Id = accountRecord.Id,
-                AccountNumber = accountRecord.AccountNumber,
-                BankName = accountRecord.BankName,
-                AccountType = accountRecord.AccountType,
-                Balance = accountRecord.Balance,
-                CreatedAt = accountRecord.CreatedAt,
-            };
+                throw new ArgumentException("Account does not exist");
+            }
+
+            return accountRecord;
         }
 
-        public async Task<BankAccountDto?> GetByUserIdAsync(Guid userId)
+        public async Task<BankAccount> GetByUserIdAsync(Guid userId)
         {
             var accountRecord = await _bankAccountTable
                 .FirstOrDefaultAsync(a => a.UserId == userId);
@@ -91,18 +71,10 @@ namespace SpagWallet.Infrastructure.Persistence.Repositories
             if (accountRecord is null)
                 throw new ArgumentException("Bank account does not exist");
 
-            return new BankAccountDto
-            {
-                Id = accountRecord.Id,
-                AccountNumber = accountRecord.AccountNumber,
-                BankName = accountRecord.BankName,
-                AccountType = accountRecord.AccountType,
-                Balance = accountRecord.Balance,
-                CreatedAt = accountRecord.CreatedAt,
-            };
+            return accountRecord;
         }
 
-        public async Task<BankAccountDto?> GetByWalletIdAsync(Guid walletId)
+        public async Task<BankAccount> GetByWalletIdAsync(Guid walletId)
         {
             var accountRecord = await _bankAccountTable
                 .Include(a => a.Wallet)
@@ -111,21 +83,13 @@ namespace SpagWallet.Infrastructure.Persistence.Repositories
             if (accountRecord is null)
                 throw new ArgumentException("Bank account does not exist");
 
-            return new BankAccountDto
-            {
-                Id = accountRecord.Id,
-                AccountNumber = accountRecord.AccountNumber,
-                BankName = accountRecord.BankName,
-                AccountType = accountRecord.AccountType,
-                Balance = accountRecord.Balance,
-                CreatedAt = accountRecord.CreatedAt,
-            };
+            return accountRecord;
         }
 
-        public async Task<BankAccountDto> UpdateAccountType(Guid bankaccountId, UpdateBankAccountDto updateDto)
+        public async Task<BankAccount> UpdateAccountTypeAsync(Guid bankaccountId, UpdateBankAccountDto updateDto)
         {
             var accountRecord = await _bankAccountTable
-                .FindAsync(bankaccountId);
+                           .FindAsync(bankaccountId);
 
             if (accountRecord is null)
                 throw new ArgumentException("Bank account does not exist");
@@ -134,46 +98,9 @@ namespace SpagWallet.Infrastructure.Persistence.Repositories
 
             await _context.SaveChangesAsync();
 
-            return new BankAccountDto
-            {
-                Id = accountRecord.Id,
-                AccountNumber = accountRecord.AccountNumber,
-                BankName = accountRecord.BankName,
-                AccountType = accountRecord.AccountType,
-                Balance = accountRecord.Balance,
-                CreatedAt = accountRecord.CreatedAt,
-            };
-
+            return accountRecord;
         }
-        //public async Task<BankAccountDto> UpdateAccountType(Guid bankaccountId, UpdateBankAccountDto updateDto)
-        //{
-        //    var accountRecord = await _bankAccountTable
-        //        .FindAsync(bankaccountId);
 
-        //    if (accountRecord is null)
-        //        throw new ArgumentException("Bank account does not exist");
-
-
-        //    if (updateDto.AccountType.HasValue)
-        //    {
-        //        accountRecord.AccountType = updateDto.AccountType.Value;
-        //    }
-        //    else
-        //    {
-        //        throw new ArgumentException("AccountType cannot be null");
-        //    }
-
-        //    return new BankAccountDto
-        //    {
-        //        Id = accountRecord.Id,
-        //        AccountNumber = accountRecord.AccountNumber,
-        //        BankName = accountRecord.BankName,
-        //        AccountType = accountRecord.AccountType,
-        //        Balance = accountRecord.Balance,
-        //        CreatedAt = accountRecord.CreatedAt,
-        //    };
-
-        //}
 
         public async Task<bool> UpdateBalanceAsync(Guid bankAccountId, decimal amount)
         {
@@ -190,6 +117,44 @@ namespace SpagWallet.Infrastructure.Persistence.Repositories
 
            int result = await _context.SaveChangesAsync();
             return result > 0;
+        }
+
+        public async Task<bool> SaveAsync()
+        {
+          int result =  await _context.SaveChangesAsync();
+          return result > 0;
+        }
+
+        public async Task<bool> AddFundsAsync(Guid bankaccountId, decimal amount)
+        {
+            var bankAccount = await GetByIdAsync(bankaccountId);
+            if (bankAccount == null) return false;
+
+            bankAccount.Credit(amount);
+            return await _context.SaveChangesAsync() > 0;
+        }
+
+        public async Task<bool> WithdrawFundsAsync(Guid bankaccountId, decimal amount)
+        {
+            var bankAccount = await GetByIdAsync(bankaccountId);
+            if (bankAccount == null || bankAccount.Balance < amount) return false;
+
+            bankAccount.Withdraw(amount);
+            return await _context.SaveChangesAsync() > 0;
+        }
+
+        public async Task<bool> TransferFundsAsync(Guid senderbankaccountid, Guid receiverbankaccountIid, decimal amount)
+        {
+            var senderbankaccount = await GetByIdAsync(senderbankaccountid);
+            var receiverbankaccount = await GetByIdAsync(receiverbankaccountIid);
+
+            if (senderbankaccount == null || receiverbankaccount == null || senderbankaccount.Balance < amount)
+                return false;
+
+            senderbankaccount.Withdraw(amount);
+            receiverbankaccount.Credit(amount);
+
+            return await _context.SaveChangesAsync() > 0;
         }
     }
 }
