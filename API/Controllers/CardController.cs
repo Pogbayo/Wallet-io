@@ -1,9 +1,8 @@
 ﻿using API.Common;
 using Application.Interfaces.ServiceInterfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SpagWallet.Application.DTOs.CardDtoBranch;
-using SpagWallet.Application.DTOs.UserDtoBranch;
-using SpagWallet.Domain.Entities;
 
 namespace API.Controllers
 {
@@ -12,12 +11,14 @@ namespace API.Controllers
     public class CardController : BaseController
     {
         private readonly ICardService _cardVault;
+
         public CardController(ICardService cardVault)
         {
             _cardVault = cardVault;
         }
 
         [HttpGet("get-card-by-id/{cardId}")]
+        [Authorize(Roles = "Admin,User")]
         public async Task<ActionResult<ApiResponse<CardDto>>> GetCardById(Guid cardId)
         {
             var cardRecord = await _cardVault.GetCardByIdAsync(cardId);
@@ -25,12 +26,13 @@ namespace API.Controllers
             {
                 return NotFoundResponse<CardDto>(
                   new List<string> { "Error getting card" },
-                  "card not fetched successfully");
+                  "Card not fetched successfully");
             }
-            return Success(cardRecord, "Card record feteched successfully");
+            return Success(cardRecord, "Card record fetched successfully");
         }
 
         [HttpGet("get-all-cards")]
+        [Authorize(Roles = "Admin")]
         public async Task<ActionResult<ApiResponse<IEnumerable<CardDto?>>>> GetAllCards()
         {
             var cardRecords = await _cardVault.GetAllCardsAsync();
@@ -43,19 +45,22 @@ namespace API.Controllers
         }
 
         [HttpPatch("deactivate-card-by-id/{cardId}")]
+        [Authorize(Roles = "Admin")]
         public async Task<ActionResult<ApiResponse<bool>>> DeactivateCard(Guid cardId)
         {
             var success = await _cardVault.DeactivateCard(cardId);
             if (!success)
             {
                 return Failure<bool>(
-               new List<string> { "Error deactivated card" },
-               "Cards not deactivated successfully");
+                    new List<string> { "Error deactivating card" },
+                    "Card not deactivated successfully"
+                );
             }
-            return Success(success, "Card deavtivated successfully");
+            return Success(success, "Card deactivated successfully");
         }
 
         [HttpPatch("activate-card-by-id/{cardId}")]
+        [Authorize(Roles = "Admin")]
         public async Task<ActionResult<ApiResponse<bool>>> ActivateCard(Guid cardId)
         {
             var success = await _cardVault.ActivateCard(cardId);
@@ -70,6 +75,7 @@ namespace API.Controllers
         }
 
         [HttpPatch("block-card-by-id/{cardId}")]
+        [Authorize(Roles = "Admin")]
         public async Task<ActionResult<ApiResponse<bool>>> BlockCard(Guid cardId)
         {
             var success = await _cardVault.BlockCard(cardId);
@@ -82,6 +88,5 @@ namespace API.Controllers
             }
             return Success(success, "Card blocked successfully");
         }
-
     }
 }

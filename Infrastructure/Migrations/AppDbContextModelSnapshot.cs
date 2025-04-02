@@ -22,6 +22,73 @@ namespace SpagWallet.Infrastructure.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("Domain.Entities.AuditLog", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Action")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Details")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("PerformedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("PerformedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("AuditLogs");
+                });
+
+            modelBuilder.Entity("Domain.Entities.Wallet", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<decimal>("Balance")
+                        .HasPrecision(18, 2)
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<Guid>("BankAccountId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Currency")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsLocked")
+                        .HasColumnType("bit");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("WalletNumber")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("WalletPinHash")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BankAccountId")
+                        .IsUnique();
+
+                    b.HasIndex("UserId")
+                        .IsUnique();
+
+                    b.ToTable("Wallets");
+                });
+
             modelBuilder.Entity("SpagWallet.Domain.Entities.BankAccount", b =>
                 {
                     b.Property<Guid>("Id")
@@ -119,12 +186,8 @@ namespace SpagWallet.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("IdentificationNumber")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("IdentificationType")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<Guid>("IdentificationNumber")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<bool>("IsVerified")
                         .HasColumnType("bit");
@@ -224,48 +287,23 @@ namespace SpagWallet.Infrastructure.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("SpagWallet.Domain.Entities.Wallet", b =>
+            modelBuilder.Entity("Domain.Entities.Wallet", b =>
                 {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                    b.HasOne("SpagWallet.Domain.Entities.BankAccount", "BankAccount")
+                        .WithOne("Wallet")
+                        .HasForeignKey("Domain.Entities.Wallet", "BankAccountId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Property<decimal>("Balance")
-                        .HasPrecision(18, 2)
-                        .HasColumnType("decimal(18,2)");
+                    b.HasOne("SpagWallet.Domain.Entities.User", "User")
+                        .WithOne("Wallet")
+                        .HasForeignKey("Domain.Entities.Wallet", "UserId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
 
-                    b.Property<Guid>("BankAccountId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Navigation("BankAccount");
 
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Currency")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsLocked")
-                        .HasColumnType("bit");
-
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("WalletNumber")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("WalletPinHash")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("BankAccountId")
-                        .IsUnique();
-
-                    b.HasIndex("UserId")
-                        .IsUnique();
-
-                    b.ToTable("Wallets");
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("SpagWallet.Domain.Entities.BankAccount", b =>
@@ -287,7 +325,7 @@ namespace SpagWallet.Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("SpagWallet.Domain.Entities.Wallet", "Wallet")
+                    b.HasOne("Domain.Entities.Wallet", "Wallet")
                         .WithOne("Card")
                         .HasForeignKey("SpagWallet.Domain.Entities.Card", "WalletId")
                         .OnDelete(DeleteBehavior.NoAction);
@@ -314,28 +352,16 @@ namespace SpagWallet.Infrastructure.Migrations
                         .WithMany("Transactions")
                         .HasForeignKey("BankAccountId");
 
-                    b.HasOne("SpagWallet.Domain.Entities.Wallet", null)
+                    b.HasOne("Domain.Entities.Wallet", null)
                         .WithMany("Transactions")
                         .HasForeignKey("WalletId");
                 });
 
-            modelBuilder.Entity("SpagWallet.Domain.Entities.Wallet", b =>
+            modelBuilder.Entity("Domain.Entities.Wallet", b =>
                 {
-                    b.HasOne("SpagWallet.Domain.Entities.BankAccount", "BankAccount")
-                        .WithOne("Wallet")
-                        .HasForeignKey("SpagWallet.Domain.Entities.Wallet", "BankAccountId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.Navigation("Card");
 
-                    b.HasOne("SpagWallet.Domain.Entities.User", "User")
-                        .WithOne("Wallet")
-                        .HasForeignKey("SpagWallet.Domain.Entities.Wallet", "UserId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.Navigation("BankAccount");
-
-                    b.Navigation("User");
+                    b.Navigation("Transactions");
                 });
 
             modelBuilder.Entity("SpagWallet.Domain.Entities.BankAccount", b =>
@@ -354,13 +380,6 @@ namespace SpagWallet.Infrastructure.Migrations
                     b.Navigation("Kyc");
 
                     b.Navigation("Wallet");
-                });
-
-            modelBuilder.Entity("SpagWallet.Domain.Entities.Wallet", b =>
-                {
-                    b.Navigation("Card");
-
-                    b.Navigation("Transactions");
                 });
 #pragma warning restore 612, 618
         }

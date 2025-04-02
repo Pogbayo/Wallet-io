@@ -1,5 +1,6 @@
 ﻿using API.Common;
 using Application.Interfaces.ServiceInterfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SpagWallet.Application.DTOs.TransferDtoBranch;
 using SpagWallet.Domain.Entities;
@@ -16,6 +17,7 @@ namespace API.Controllers
             _fundflow = fundflow;
         }
 
+        [Authorize]
         [HttpGet("get-all-transactions")]
         public async Task<ActionResult<ApiResponse<IEnumerable<GetTransactionDetailsDto>>>> GetAllTransactions()
         {
@@ -31,6 +33,7 @@ namespace API.Controllers
              "Transactions retrieved successfully.");
         }
 
+        [Authorize]
         [HttpGet("get-transaction-by/{transactionId}")]
         public async Task<ActionResult<ApiResponse<GetTransactionDetailsDto>>> GetTransactionById(Guid transactionId)
         {
@@ -46,6 +49,7 @@ namespace API.Controllers
              "Transactions retrieved successfully.");
         }
 
+        [Authorize]
         [HttpPost("generate-transaction-receipt")]
         public async Task<ActionResult<ApiResponse<TransactionReceiptDto>>> ProcessTransactionReceipt([FromBody] Transaction transactiondata)
         {
@@ -54,10 +58,9 @@ namespace API.Controllers
             {
                 return NotFoundResponse<TransactionReceiptDto>(
                     new List<string> { "Error generating transaction receipt" },
-                    "transaction recipt not generated successfully");
+                    "transaction receipt not generated successfully");
             }
             return Success(processedReceipt, "Receipt generated successfully.");
         }
-
     }
 }

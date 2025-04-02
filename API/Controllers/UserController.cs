@@ -1,9 +1,9 @@
 ﻿using API.Common;
 using Application.DTOs.UserDtoBranch;
 using Application.Interfaces.ServiceInterfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SpagWallet.Application.DTOs.UserDtoBranch;
-
 
 namespace API.Controllers
 {
@@ -12,15 +12,14 @@ namespace API.Controllers
     public class UserController : BaseController
     {
         private readonly IUserService _identityService;
-        public UserController
-            (
-            IUserService IdentityService
-            )
+
+        public UserController(IUserService IdentityService)
         {
             _identityService = IdentityService;
         }
 
         [HttpGet("get-all-users")]
+        [Authorize(Roles = "Admin")]
         public async Task<ActionResult<ApiResponse<List<UserDto>>>>
             GetAllUsers()
         {
@@ -28,20 +27,19 @@ namespace API.Controllers
 
             if (users == null || !users.Any())
                 return NotFoundResponse<List<UserDto>>(
-                    new List<string> { "Error getting users" }, 
+                    new List<string> { "Error getting users" },
                     "users not fetched successfully"
-                    );
+                );
 
             return Success
-                (users.ToList(), 
+                (users.ToList(),
                 "Users retrieved successfully.");
         }
 
-
         [HttpGet("get-user-by-id/{userId}")]
+        [Authorize(Roles = "Admin,User")]
         public async Task<ActionResult<ApiResponse<UserDto>>>
-            GetUserById
-            (Guid userId)
+            GetUserById(Guid userId)
         {
             var user = await _identityService.GetUserByIdAsync(userId);
             if (user == null)
@@ -54,13 +52,9 @@ namespace API.Controllers
                 (user, "User retrieved successfully");
         }
 
-
         [HttpPost("sign-up")]
-        public async Task<ActionResult<ApiResponse<UserDto>>> 
-            SignUp
-        (
-         [FromBody] CreateUserDto userdata
-        )
+        public async Task<ActionResult<ApiResponse<UserDto>>>
+            SignUp([FromBody] CreateUserDto userdata)
         {
             var registeredUser = await _identityService.RegisterUserAsync(userdata);
 
@@ -73,16 +67,15 @@ namespace API.Controllers
             }
 
             return CreatedAtAction(
-                 nameof(GetUserById),  
-                 new { userId = registeredUser.Id }, 
+                 nameof(GetUserById),
+                 new { userId = registeredUser.Id },
                  Success(registeredUser, "User registration successful")
             );
         }
 
-
         [HttpPost("sign-in")]
-        public async Task<ActionResult<ApiResponse<string?>>> 
-            SignIn([FromBody]LoginDto loginData)
+        public async Task<ActionResult<ApiResponse<string?>>>
+            SignIn([FromBody] LoginDto loginData)
         {
             var loggedInUser = await _identityService.LoginUserAsync(loginData);
             if (string.IsNullOrEmpty(loggedInUser))
@@ -90,25 +83,25 @@ namespace API.Controllers
                 return Failure<string?>(
                    new List<string> { "Invalid email or password" },
                    "Authentication failed"
-                   );
+                );
             }
             return Success<string?>(loggedInUser, "User logged in successfully");
         }
 
-
         [HttpDelete("delete-user/{userId}")]
-        public async Task<ActionResult<ApiResponse<bool>>> 
+        [Authorize(Roles = "Admin")]
+        public async Task<ActionResult<ApiResponse<bool>>>
             DeleteUser(Guid userId)
         {
             bool result = await _identityService.DeleteUserAsync(userId);
             if (!result)
             {
                 return NotFoundResponse<bool>
-                   (new List<string> 
+                   (new List<string>
                    { "Error deleting user" },
                  "Unable to delete user");
             }
-            return Success(result,"User deleted successfully");
+            return Success(result, "User deleted successfully");
         }
     }
 }

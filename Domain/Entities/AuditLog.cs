@@ -9,6 +9,8 @@ namespace Domain.Entities
         public DateTime PerformedAt { get; set; } = DateTime.UtcNow; 
         public string? Details { get; set; }
 
+        public AuditLog() { }
+
         public AuditLog(string action, Guid performedBy, string details)
         {
             Action = action;

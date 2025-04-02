@@ -1,4 +1,5 @@
 ﻿
+using Domain.Entities;
 using SpagWallet.Domain.Enums.UserEnums;
 
 namespace SpagWallet.Domain.Entities

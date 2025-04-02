@@ -1,5 +1,6 @@
 ﻿using API.Common;
 using Application.Interfaces.ServiceInterfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SpagWallet.Application.DTOs.KycDtoBranch;
 using SpagWallet.Domain.Entities;
@@ -16,6 +17,7 @@ namespace API.Controllers
             _identityAuth = identityAuth;
         }
 
+        [Authorize]
         [HttpGet("get-kyc-by/{kycId}")]
         public async Task<ActionResult<ApiResponse<GetKycDto>>> GetKycById(Guid kycId)
         {
@@ -27,6 +29,7 @@ namespace API.Controllers
             return Success(kycRecord, "Kyc record fetched successfully");
         }
 
+        [Authorize]
         [HttpGet("get-kyc-by-userid/{userId}")]
         public async Task<ActionResult<ApiResponse<GetKycDto>>> GetKycByUserId(Guid userId)
         {
@@ -38,6 +41,7 @@ namespace API.Controllers
             return Success(kycRecord, "Kyc record fetched successfully");
         }
 
+        [Authorize]
         [HttpGet("get-unverified-kyc-records")]
         public async Task<ActionResult<ApiResponse<IEnumerable<Guid>>>> GetUnverifiedKycRecords()
         {
@@ -46,9 +50,10 @@ namespace API.Controllers
             {
                 return NotFoundResponse<IEnumerable<Guid>>(new List<string> { "Error getting kyc record" }, "Kyc record not found");
             }
-            return Success(unverifiedKycs, "Unveirifed kycs fetched successfully.");
+            return Success(unverifiedKycs, "Unverified kycs fetched successfully.");
         }
 
+        [Authorize]
         [HttpGet("get-all-verified-kyc-records")]
         public async Task<ActionResult<ApiResponse<IEnumerable<Guid>>>> GetVerifiedKycRecords()
         {
@@ -60,7 +65,6 @@ namespace API.Controllers
             return Success(unverifiedKycs, "Verified kycs fetched successfully.");
         }
 
-
         [HttpPost("submit-kyc-record")]
         public async Task<ActionResult<ApiResponse<bool>>> SubmitKyc([FromBody] Kyc kycdata)
         {
@@ -68,15 +72,15 @@ namespace API.Controllers
             if (!success)
             {
                 return Failure<bool>(new List<string> { "Error submitting kyc record" }, "Kyc record not submitted");
-
             }
             return Success(success, "Kyc submission successful.");
         }
 
+        [Authorize]
         [HttpPost("verify-kyc/{userId}")]
-        public async Task<ActionResult<ApiResponse<bool>>> VerifyKyc(Guid userId,[FromBody] bool isVefiried)
+        public async Task<ActionResult<ApiResponse<bool>>> VerifyKyc(Guid userId, [FromBody] bool isVerified)
         {
-            bool success = await _identityAuth.VerifyKycAsync(userId,isVefiried);
+            bool success = await _identityAuth.VerifyKycAsync(userId, isVerified);
             if (!success)
             {
                 return Failure<bool>(new List<string> { "Error verifying kyc record" }, "Kyc record not verified");
@@ -84,6 +88,7 @@ namespace API.Controllers
             return Success(success, "Kyc verification successful.");
         }
 
+        [Authorize]
         [HttpDelete("delete-kyc/{kycId}")]
         public async Task<ActionResult<ApiResponse<bool>>> DeleteKyc(Guid kycId)
         {
@@ -95,6 +100,7 @@ namespace API.Controllers
             return Success(success, "Kyc record deleted successfully.");
         }
 
+        [Authorize]
         [HttpGet("check-kyc-verification-status/{kycId}")]
         public async Task<ActionResult<ApiResponse<bool>>> IsKycVerified(Guid kycId)
         {
@@ -105,7 +111,8 @@ namespace API.Controllers
             }
             return Success(success, "Kyc verification status checked successfully.");
         }
-        
+
+        [Authorize]
         [HttpGet("check-kyc-submission-status/{userId}")]
         public async Task<ActionResult<ApiResponse<bool>>> UserHasSubmittedKyc(Guid userId)
         {
@@ -117,7 +124,7 @@ namespace API.Controllers
             return Success(success, "User has submitted kyc.");
         }
 
-        [HttpGet("check-veirifcation-time/{kycId}")]
+        [HttpGet("check-verification-time/{kycId}")]
         public async Task<ActionResult<ApiResponse<DateTime?>>> CheckVerificationTime(Guid kycId)
         {
             var datetime = await _identityAuth.VerifiedAtAsync(kycId);

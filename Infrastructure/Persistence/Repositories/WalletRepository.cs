@@ -1,4 +1,5 @@
 ﻿using Application.Interfaces.RepoInterfaces;
+using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using SpagWallet.Application.DTOs.WalletDtoBranch;
 using SpagWallet.Domain.Entities;
